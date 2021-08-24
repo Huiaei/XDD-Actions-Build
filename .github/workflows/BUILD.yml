@@ -1,0 +1,58 @@
+
+name: 编译XDD
+
+on:
+  push:
+    branches:
+      - main
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Go environment
+        uses: actions/setup-go@v2.1.3
+        with:
+          go-version: 1.17
+          
+      #- name: 测试GO环境安装情况
+      #  run: |
+      #    go env
+          
+      #- name: 查看GO版本
+      #  run: |
+      #    go version
+      
+      - name: Git cdle/xdd
+        run: |
+          git clone https://github.com/cdle/xdd.git /home/runner/work/a/
+          
+      
+      - name: go build xdd
+        run: |
+          cd /home/runner/work/a
+          go build -v -o xdd_linux_amd64 /home/runner/work/a # 这 3 条是交叉编译 Go 的指令，酌情修改。
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -o xdd_windows_amd64.exe /home/runner/work/a
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -v -o xdd_darwin_amd64 /home/runner/work/a
+      
+          
+      - name: Create timestamp
+        id: create_timestamp
+        run: echo "::set-output name=timestamp::$(date '+%Y%m%d%H%M%s')"
+        shell: bash
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with: # 将下述可执行文件 release 上去
+          tag_name: ${{ steps.create_timestamp.outputs.timestamp }}
+          name: XDD-${{ steps.create_timestamp.outputs.timestamp }}
+          files: |
+            /home/runner/work/a/xdd_linux_amd64
+            /home/runner/work/a/xdd_windows_amd64.exe
+            /home/runner/work/a/xdd_darwin_amd64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
