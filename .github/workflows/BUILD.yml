@@ -35,8 +35,8 @@ jobs:
         run: |
           cd /home/runner/work/a
           go build -v -o xdd_linux_amd64 /home/runner/work/a # 这 3 条是交叉编译 Go 的指令，酌情修改。
-          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -o xdd_windows_amd64.exe /home/runner/work/a
-          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -v -o xdd_darwin_amd64 /home/runner/work/a
+      #    CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -o xdd_windows_amd64.exe /home/runner/work/a
+      #    CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -v -o xdd_darwin_amd64 /home/runner/work/a
       
           
       - name: Create timestamp
@@ -51,8 +51,8 @@ jobs:
           name: XDD-${{ steps.create_timestamp.outputs.timestamp }}
           files: |
             /home/runner/work/a/xdd_linux_amd64
-            /home/runner/work/a/xdd_windows_amd64.exe
-            /home/runner/work/a/xdd_darwin_amd64
+       #     /home/runner/work/a/xdd_windows_amd64.exe
+       #     /home/runner/work/a/xdd_darwin_amd64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
