@@ -1,4 +1,7 @@
 # CDLE-XDD-BUILD
+ 
+**已经失效，原仓库已经删库了。** 另寻其他项目吧。
+
 这是个使用 Github Action 的编译项目。
 
 编译对象为 [cdle/xdd](https://github.com/cdle/xdd) ；
