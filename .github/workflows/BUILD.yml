@@ -51,7 +51,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: xdd_*
+          file: /home/runner/work/xdd/xdd_*
           tag: XDD-PLUS-${{ steps.create_timestamp.outputs.timestamp }}
           overwrite: true
           file_glob: true
