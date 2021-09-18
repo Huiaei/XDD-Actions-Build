@@ -30,7 +30,7 @@
 
 编译对象为 [cdle/xdd](https://github.com/cdle/xdd) ；
 
-编译结果将会上传到 [Release](https://github.com/Huiaei/XDD-BUILD/releases) 中，Release 格式名为 **XDD-[时间]**；
+编译结果将会上传到 [Release](https://github.com/Huiaei/XDD-BUILD/releases) 中，Release 格式名为 **[时间]**；
 
 **不保证其编译结果的可用性**。
 
