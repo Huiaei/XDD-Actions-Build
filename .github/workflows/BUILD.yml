@@ -37,14 +37,16 @@ jobs:
           go get github.com/mitchellh/gox
           gox -os "linux" -arch "amd64 arm arm64"
           ls
-      #    go build -v -o xdd_linux_amd64 /home/runner/work/xdd # 这 3 条是交叉编译 Go 的指令，酌情修改。
+          
+      # 这 3 条是交叉编译 Go 的指令，酌情修改。
+      #    go build -v -o xdd_linux_amd64 /home/runner/work/xdd 
       #    CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -o xdd_windows_amd64.exe /home/runner/work/xdd
       #    CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -v -o xdd_darwin_amd64 /home/runner/work/xdd
       
           
       - name: 创建当前时间戳
         id: create_timestamp
-        run: echo "::set-output name=timestamp::$(date '+%Y%m%d%H%M%s')"
+        run: echo "::set-output name=timestamp::$(date)"  # '+%Y%m%d%H%M%s')"
         shell: bash
         
       - name: 上传Releases
