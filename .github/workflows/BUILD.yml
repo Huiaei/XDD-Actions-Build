@@ -46,7 +46,7 @@ jobs:
           
       - name: 创建当前时间戳
         id: create_timestamp
-        run: echo "::set-output name=timestamp::$(date)"  # '+%Y%m%d%H%M%s')"
+        run: echo "::set-output name=timestamp::$(date '+%Y%m%d')" # %H%M%s')"
         shell: bash
         
       - name: 上传Releases
