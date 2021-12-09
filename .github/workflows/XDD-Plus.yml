@@ -2,9 +2,9 @@
 name: 编译XDD
 
 on:
-  push:
-    branches: #当分支改动时触发
-      - main
+  #push:
+    #branches: #当分支改动时触发
+      #- main
   watch:
     types: [started]  #当star增加时触发
 
